@@ -22,6 +22,7 @@ char * descomprimir(char * arreglo,int size){
 	
 	char * descomprimido;
 	int num,acum=0;
+	descomprimido=new char[acum];
 	char caracter;
 	for(int i=0;i<size;i++){
 		num = arreglo[i] - '0';
@@ -39,7 +40,7 @@ char * descomprimir(char * arreglo,int size){
 		cout<<descomprimido[y]<<",";
 	}
 	cout<<"]"<<endl;
-	
+	 
 	return descomprimido;
 
 }
@@ -74,8 +75,6 @@ char** matrix(int n,int m,int k){
 	return matriz;
 }
 	
-	
-
 int main(int argc, char** argv) {
 	
 	int op=0;
