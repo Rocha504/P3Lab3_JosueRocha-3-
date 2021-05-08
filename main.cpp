@@ -45,6 +45,7 @@ char * descomprimir(char * arreglo,int size){
 
 }
 void juego(char * arreglo,char**matrix,int i,int j){
+
 	char m1=186;
 	char m2=187;
 	char m3=201;
@@ -65,11 +66,11 @@ char** matrix(int n,int m,int k){
 			matriz[i][j]='_';
 		}
 	}
-	for(int i=0;i<n;i++){
-		for(int j=0;j<m;j++){
-			matriz[rand()%m+1][rand()%n+1]='#';
-		}
-	}
+	
+	for(int d=0;d<k;d++){
+		matriz[rand()%m+1][rand()%n+1]='#';}
+		
+	
 	
 	for(int i=0;i<n;i++){
 	
@@ -202,7 +203,7 @@ int main(int argc, char** argv) {
 				int fila,columna;
 				cout<<"Ingrese su fila inicial ";
 				cin>>fila;
-				cout<<"Ingrese su columna inicial";
+				cout<<"Ingrese su columna inicial ";
 				cin>>columna;
 				juego(secuencia,tablero,fila,columna);
 							 
