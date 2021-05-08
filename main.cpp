@@ -44,8 +44,14 @@ char * descomprimir(char * arreglo,int size){
 	return descomprimido;
 
 }
-
-
+void juego(char * arreglo,char**matrix,int i,int j){
+	char m1=186;
+	char m2=187;
+	char m3=201;
+	char m4=188;
+	char m5=205;
+	char m6=200;
+}
 char** matrix(int n,int m,int k){
 	srand (time(NULL));
 	char** matriz=0;
@@ -87,7 +93,11 @@ int main(int argc, char** argv) {
 				int size;
 				char entry;
 				cout<<"Ingrese el size de la cadena"<<endl;
-				cin>>size;	
+				cin>>size;
+				if(size%2!=0){
+					cout<<"No se aceptan numeros impares ";
+					cin>>size;
+				}	
 				arreglo=new char[size];			
 				cout<<"A continuacion debera de llenar el arreglo con los Caracteres siguientes: "<<endl;
 				cout<<"D-Down"<<endl;
@@ -105,7 +115,7 @@ int main(int argc, char** argv) {
 						cin>>entry;	
 					}
 					i++;
-					cout<<"Ingrese uno de los caracteres permitidos"<<endl;
+					cout<<"Ingrese uno de los caracteres permitidos(En Mayuscula)"<<endl;
 					cin>>entry;
 					if(entry=='D'||entry=='U'||entry=='L'||entry=='R'){
 						arreglo[i]=entry;
@@ -115,6 +125,12 @@ int main(int argc, char** argv) {
 						cin>>entry;
 					}
 				}
+				cout<<"[";
+				for(int b=0;b<size;b++){
+					cout<<arreglo[b]<<",";
+				}
+				cout<<"]";
+				cout<<endl;
 				descomprimir(arreglo,size);			
 			}
 			break;
@@ -129,6 +145,67 @@ int main(int argc, char** argv) {
 				matrix(n,m,k);
 				
 				 
+			}
+			break;
+			case 3:{
+				char* arreglo;
+				int size;
+				char entry;
+				cout<<"Ingrese el size de la cadena"<<endl;
+				cin>>size;
+				if(size%2!=0){
+					cout<<"No se aceptan numeros impares ";
+					cin>>size;
+				}	
+				arreglo=new char[size];			
+				cout<<"A continuacion debera de llenar el arreglo con los Caracteres siguientes: "<<endl;
+				cout<<"D-Down"<<endl;
+				cout<<"U-Up"<<endl;
+				cout<<"L-Left"<<endl;
+				cout<<"R-Right"<<endl;
+				for(int i=0;i<size;i++){
+					cout<<"Ingrese un numero"<<endl;
+					cin>>entry;
+					if(isdigit(entry)){
+						arreglo[i]=entry;
+					}
+					else{
+						cout<<"Ingrese un numero"<<endl;
+						cin>>entry;	
+					}
+					i++;
+					cout<<"Ingrese uno de los caracteres permitidos(En Mayuscula)"<<endl;
+					cin>>entry;
+					if(entry=='D'||entry=='U'||entry=='L'||entry=='R'){
+						arreglo[i]=entry;
+					}
+					else{
+						cout<<"caracter invalido vuelva a ingresar uno valido (D,U,L,R)"<<endl;
+						cin>>entry;
+					}
+				}
+				cout<<"[";
+				for(int b=0;b<size;b++){
+					cout<<arreglo[b]<<",";
+				}
+				cout<<"]";
+				cout<<endl;
+				char* secuencia=descomprimir(arreglo,size);	
+				int n,m,k;
+				cout<<"Ingrese la cantidad de filas para su matriz ";
+				cin>>n;
+				cout<<"Ingrese la cantidad de columnas para su matriz ";
+				cin>>m;
+				cout<<"Ingrese la cantidad de obstaculos para su matriz ";
+				cin>>k;
+				char** tablero=matrix(n,m,k);
+				int fila,columna;
+				cout<<"Ingrese su fila inicial ";
+				cin>>fila;
+				cout<<"Ingrese su columna inicial";
+				cin>>columna;
+				juego(secuencia,tablero,fila,columna);
+							 
 			}
 			break;
 				return 0;
