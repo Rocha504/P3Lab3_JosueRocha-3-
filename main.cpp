@@ -2,6 +2,8 @@
 using std::cout;
 using std::cin;
 using std::endl;
+#include <stdlib.h>   
+#include <time.h>
 
 int menu(){
 	
@@ -17,24 +19,21 @@ int menu(){
 	return op;
 }
 char * descomprimir(char * arreglo,int size){
+	
 	char * descomprimido;
 	int num,acum=0;
 	char caracter;
 	for(int i=0;i<size;i++){
-		if(i%2==0){
-			num = arreglo[i] - '0';
-		}	 
+		num = arreglo[i] - '0';
 		i++;
-		if(i%2!==0){
-			caracter = arreglo[i];
-		}
+		caracter = arreglo[i];
 		int aux=acum;	
 		for(int x=0;x<num;x++){
 			descomprimido[aux]=caracter;	 
 			aux++;	
 		} 
 		acum=acum+num;			
-}
+	}
 	cout<<"[";
 	for(int y=0;y<acum;y++){
 		cout<<descomprimido[y]<<",";
@@ -44,6 +43,38 @@ char * descomprimir(char * arreglo,int size){
 	return descomprimido;
 
 }
+
+
+char** matrix(int n,int m,int k){
+	srand (time(NULL));
+	char** matriz=0;
+	
+	matriz=new char*[n*m];
+	for(int y=0;y<n*m;y++){
+		matriz[y]=new char[n*m];
+	}
+	for(int i=0;i<n;i++){
+		for(int j=0;j<m;j++){
+			matriz[i][j]='_';
+		}
+	}
+	for(int i=0;i<n;i++){
+		for(int j=0;j<m;j++){
+			matriz[rand()%m+1][rand()%n+1]='#';
+		}
+	}
+	
+	for(int i=0;i<n;i++){
+	
+		for(int j=0;j<m;j++){
+			cout<<" "<<matriz[i][j];
+		}
+		cout<<endl;
+	}
+	return matriz;
+}
+	
+	
 
 int main(int argc, char** argv) {
 	
@@ -85,25 +116,23 @@ int main(int argc, char** argv) {
 						cin>>entry;
 					}
 				}
-				descomprimir(arreglo,size);	
-				delete [] arreglo;	
+				descomprimir(arreglo,size);			
 			}
 			break;
-    			
-		}
-	 
-	
+			case 2:{
+				int n,m,k;
+				cout<<"Ingrese la cantidad de filas para su matriz ";
+				cin>>n;
+				cout<<"Ingrese la cantidad de columnas para su matriz ";
+				cin>>m;
+				cout<<"Ingrese la cantidad de obstaculos para su matriz ";
+				cin>>k;
+				matrix(n,m,k);
+				
+				 
+			}
+			break;
+				return 0;
 	}
-	
-		return 0;
-	
-	
-	
- 
- 
- 
-	
-	
-	
-	
+	}
 }
